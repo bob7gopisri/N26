@@ -41,6 +41,7 @@ public class ComputationService {
             }
             else if (transactionOperation == TransactionOperation.TRANSACTION_DELETE) {
                 sortedTransactions.remove(amount);
+                Collections.sort(sortedTransactions);
 
                 statistic.setSum(sum -= amount);
                 statistic.setCount(--count);
