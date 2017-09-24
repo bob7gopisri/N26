@@ -15,7 +15,7 @@ public class Statistic {
         this.sum = 0;
         this.avg = 0;
         this.max = 0;
-        this.min = 0;
+        this.min = Double.MAX_VALUE;
         this.count = 0;
     }
 
@@ -41,4 +41,15 @@ public class Statistic {
     public double getMin() {return min;}
 
     public long getCount() {return count;}
+
+    public void setSum(double sum) {this.sum = sum;}
+
+    public void setAvg(double avg) {this.avg = avg;}
+
+    public void setMax(double max) {this.max = max;}
+
+    public void setMin(double min) {this.min = min;}
+
+    public void setCount(long count) {this.count = count;}
+
 }

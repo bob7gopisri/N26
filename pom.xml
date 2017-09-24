@@ -5,7 +5,7 @@
 
 	<groupId>com.transactions</groupId>
 	<artifactId>hometest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>N26</version>
 	<packaging>jar</packaging>
 
 	<name>hometest</name>

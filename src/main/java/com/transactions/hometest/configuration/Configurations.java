@@ -6,7 +6,7 @@ public final class Configurations {
         // restrict instantiation
     }
 
-    public static final int TRANSACTION_TIMEOUT = 60;
+    public static final int TRANSACTION_TIMEOUT = 300;
 
     public static enum TransactionOperation {
         TRANSACTION_ADD, TRANSACTION_DELETE;

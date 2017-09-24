@@ -13,19 +13,30 @@ public class AddTransactionThread implements Runnable {
     private TransactionOperation transactionOperation;
     private double amount;
     private long timestamp;
+    private long addTimeout;
 
-    public AddTransactionThread(TransactionOperation transactionOperation, double amount, long timestamp){
+    public AddTransactionThread(TransactionOperation transactionOperation, double amount,
+                                long timestamp, long addTimeout){
         this.transactionOperation = transactionOperation;
         this.amount = amount;
         this.timestamp = timestamp;
+        this.addTimeout = addTimeout;
     }
 
     public void run() {
-        System.out.println("In Add Transaction Thread: " + new Timestamp(System.currentTimeMillis()).getTime());
+        try {
+            if (addTimeout > 0) {
+                Thread.sleep(addTimeout);
+            }
+            System.out.println("Insert Transaction of amount: " + amount );
 
-        ComputationService computationService = new ComputationService(transactionOperation,
-                amount, timestamp);
+            ComputationService computationService = new ComputationService(transactionOperation,
+                    amount, timestamp);
 
-        computationService.updateStatistics();
+            computationService.updateStatistics();
+        }
+        catch(InterruptedException e) {
+
+        }
     }
 }

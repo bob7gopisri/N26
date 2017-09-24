@@ -12,22 +12,22 @@ public class DeleteTransactionThread implements Runnable {
     private TransactionOperation transactionOperation;
     private double amount;
     private long timestamp;
-    private long timeout;
+    private long deleteTimeout;
 
     public DeleteTransactionThread(TransactionOperation transactionOperation, double amount,
-                                long timestamp, long timeout){
+                                long timestamp, long deleteTimeout){
         this.transactionOperation = transactionOperation;
         this.amount = amount;
         this.timestamp = timestamp;
-        this.timeout = timeout;
+        this.deleteTimeout = deleteTimeout;
     }
 
     public void run() {
         try {
-            System.out.println("In Delete Transaction Thread with timeout: " + timeout/1000 + " and timestamp: "+ new Timestamp(System.currentTimeMillis()).getTime());
-
-            Thread.sleep(timeout);
-            System.out.println("In Delete Transaction Thread after timeout: " + timeout/1000 + " and timestamp: "+ new Timestamp(System.currentTimeMillis()).getTime());
+            if (deleteTimeout > 0){
+                Thread.sleep(deleteTimeout);
+            }
+            System.out.println("Delete Transaction Thread for amount: " + amount + " after " + deleteTimeout/1000 + "s");
 
             ComputationService computationService = new ComputationService(transactionOperation,
                     amount, timestamp);
