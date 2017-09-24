@@ -27,7 +27,6 @@ public class DeleteTransactionThread implements Runnable {
             if (deleteTimeout > 0){
                 Thread.sleep(deleteTimeout);
             }
-            System.out.println("Delete Transaction Thread for amount: " + amount + " after " + deleteTimeout/1000 + "s");
 
             ComputationService computationService = new ComputationService(transactionOperation,
                     amount, timestamp);

@@ -28,7 +28,6 @@ public class AddTransactionThread implements Runnable {
             if (addTimeout > 0) {
                 Thread.sleep(addTimeout);
             }
-            System.out.println("Insert Transaction of amount: " + amount );
 
             ComputationService computationService = new ComputationService(transactionOperation,
                     amount, timestamp);

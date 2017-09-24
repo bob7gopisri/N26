@@ -21,7 +21,6 @@ public class TransactionService {
 
         long seconds = (currentTimestamp.getTime() - requestTimestamp)/1000;
 
-        System.out.println(currentTimestamp.getTime() +  " " + requestTimestamp);
         return (seconds < TRANSACTION_TIMEOUT);
     }
 
