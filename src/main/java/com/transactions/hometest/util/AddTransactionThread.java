@@ -1,5 +1,7 @@
 package com.transactions.hometest.util;
 
+import java.sql.Timestamp;
+
 import com.transactions.hometest.service.ComputationService;
 import static com.transactions.hometest.configuration.Configurations.TransactionOperation;
 
@@ -19,6 +21,8 @@ public class AddTransactionThread implements Runnable {
     }
 
     public void run() {
+        System.out.println("In Add Transaction Thread: " + new Timestamp(System.currentTimeMillis()).getTime());
+
         ComputationService computationService = new ComputationService(transactionOperation,
                 amount, timestamp);
 

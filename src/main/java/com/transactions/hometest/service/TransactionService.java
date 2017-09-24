@@ -29,6 +29,8 @@ public class TransactionService {
         double amount = transaction.getAmount();
         long requestTimestamp = transaction.getTimestamp();
 
+        System.out.println("Reached update of Transaction");
+
         // Spawn Add transaction thread
         Runnable addTransactionThread = new AddTransactionThread(transactionOperation.TRANSACTION_ADD,
                 amount, requestTimestamp);
@@ -36,7 +38,7 @@ public class TransactionService {
 
         // Compute timeout to sleep before deleting the transaction
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
-        long timeout = (currentTimestamp.getTime() - requestTimestamp);
+        long timeout = TRANSACTION_TIMEOUT * 1000 - ((currentTimestamp.getTime() - requestTimestamp));
 
         // Spawn Delete Transaction thread
         Runnable deleteTransactionThread = new DeleteTransactionThread(transactionOperation.TRANSACTION_DELETE,

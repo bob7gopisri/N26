@@ -1,5 +1,7 @@
 package com.transactions.hometest.util;
 
+import java.sql.Timestamp;
+
 import com.transactions.hometest.service.ComputationService;
 import static com.transactions.hometest.configuration.Configurations.TransactionOperation;
 
@@ -22,7 +24,11 @@ public class DeleteTransactionThread implements Runnable {
 
     public void run() {
         try {
+            System.out.println("In Delete Transaction Thread with timeout: " + timeout/1000 + " and timestamp: "+ new Timestamp(System.currentTimeMillis()).getTime());
+
             Thread.sleep(timeout);
+            System.out.println("In Delete Transaction Thread after timeout: " + timeout/1000 + " and timestamp: "+ new Timestamp(System.currentTimeMillis()).getTime());
+
             ComputationService computationService = new ComputationService(transactionOperation,
                     amount, timestamp);
 
