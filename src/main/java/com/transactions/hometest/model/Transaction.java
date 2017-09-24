@@ -3,16 +3,16 @@ package com.transactions.hometest.model;
 
 public class Transaction {
     private double amount;
-    private long timeStamp;
+    private long timestamp;
 
     public Transaction() {
 
     }
 
-    public Transaction(double amount, long timeStamp) {
+    public Transaction(double amount, long timestamp) {
         super();
         this.amount = amount;
-        this.timeStamp = timeStamp;
+        this.timestamp = timestamp;
     }
 
     public double getAmount() {
@@ -23,11 +23,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
+    public long getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }

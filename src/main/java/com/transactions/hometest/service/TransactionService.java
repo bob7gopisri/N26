@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class TransactionService {
 
-    public boolean isValid(long requestTimestamp){
-        Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
+    public boolean isValid(long requestTimestamp, double amount){
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
 
-        long seconds = (timeStamp.getTime() - requestTimestamp)/1000;
+        long seconds = (currentTimestamp.getTime() - requestTimestamp)/1000;
 
         return (seconds < 60);
     }

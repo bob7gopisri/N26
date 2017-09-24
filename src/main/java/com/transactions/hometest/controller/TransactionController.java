@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import com.transactions.hometest.model.Transaction;
 import com.transactions.hometest.service.TransactionService;
@@ -19,9 +20,9 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    @RequestMapping(value = "/transactions", method = RequestMethod.POST)
+    @RequestMapping(value = "/transactions", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity< Void > transactionsResponse(@RequestBody Transaction transaction) {
-        if (transactionService.isValid(transaction.getTimeStamp())){
+        if (transactionService.isValid(transaction.getTimestamp(), transaction.getAmount())){
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
