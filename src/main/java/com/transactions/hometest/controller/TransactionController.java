@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 
 import com.transactions.hometest.model.Transaction;
 import com.transactions.hometest.service.TransactionService;
+import static com.transactions.hometest.configuration.Configurations.TransactionOperation;
 
 @Controller
 public class TransactionController {
@@ -22,7 +23,8 @@ public class TransactionController {
 
     @RequestMapping(value = "/transactions", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity< Void > transactionsResponse(@RequestBody Transaction transaction) {
-        if (transactionService.isValid(transaction.getTimestamp(), transaction.getAmount())){
+        if (transactionService.isValid(transaction.getTimestamp())){
+            transactionService.update(TransactionOperation.TRANSACTION_ADD, transaction);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

@@ -2,19 +2,30 @@ package com.transactions.hometest.model;
 
 
 public class Statistic {
+    private static Statistic statistics_instance = null;
+
     private double sum;
     private double avg;
     private double max;
     private double min;
     private long count;
 
-    public Statistic(double sum, double avg, double max, double min, long count) {
-        super();
-        this.sum = sum;
-        this.avg = avg;
-        this.max = max;
-        this.min = min;
-        this.count = count;
+    private Statistic()
+    {
+        this.sum = 0;
+        this.avg = 0;
+        this.max = 0;
+        this.min = 0;
+        this.count = 0;
+    }
+
+    // static method to create instance of Singleton class
+    public static Statistic getInstance()
+    {
+        if (statistics_instance == null)
+            statistics_instance = new Statistic();
+
+        return statistics_instance;
     }
 
     public double getSum() {

@@ -12,19 +12,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import com.transactions.hometest.model.Statistic;
-import com.transactions.hometest.service.StatisticService;
 
 @Controller
 public class StatisticController {
 
-    @Autowired
-    private StatisticService statisticService;
-
     @RequestMapping(value = "/statistics", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity< Statistic > statisticsResponse() {
 
-        Statistic statistics = statisticService.getStatistics();
-        ResponseEntity<Statistic> responseEntity = new ResponseEntity<>(statistics, HttpStatus.OK);
+        // Statistic singleton instance will already have the updated stats, return the same. This is O(1) complexity
+        ResponseEntity<Statistic> responseEntity = new ResponseEntity<>(Statistic.getInstance(), HttpStatus.OK);
         return responseEntity;
     }
 }
